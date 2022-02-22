@@ -1,0 +1,43 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 170px;
+}
+
+.btn {
+  width: 150px;
+  height: 75px;
+}
+
+.btn.rock{
+  background-color: red;
+}
+
+.btn.rock:hover{
+  background-color: rgb(201, 104, 104);
+}
+
+.btn.paper{
+  background-color: green;
+}
+
+.btn.paper:hover{
+  background-color: rgb(113, 207, 113);
+}
+
+.btn.scissors{
+  background-color: blue;
+}
+
+.btn.scissors:hover{
+  background-color: rgb(91, 91, 197);
+}
