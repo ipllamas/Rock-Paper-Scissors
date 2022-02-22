@@ -5,63 +5,85 @@ function computerPlay(){
   let randChoice; 
 
   if (randInt === 0) {
-    randChoice = "rock";
+    randChoice = "Rock";
   } else if (randInt === 1) {
-    randChoice = 'paper';
+    randChoice = 'Paper';
   } else {
-    randChoice = 'scissors';
+    randChoice = 'Scissors';
   }
 
   return randChoice;
 }
 
 function playRound(e) {
-  /* console.log(e);
-  console.log(e.target);
-  console.log(e.target.getAttribute('class')); */
+  //Take player choice from event target's class
+  //and convers first character to upper case
+  let playerChoice = e.target.getAttribute('class').slice(4);
+  playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
 
-  const selectedButton = e.target;
-  const playerChoice = selectedButton.getAttribute('class').slice(4);
-  const computerChoice = computerPlay();
+  //Assigns a random choice for the computer
+  let computerChoice = computerPlay();
 
-  const winMessage = `You Win! ${playerChoice} beats ${computerChoice}!`
-  const loseMessage = `You Lose! ${computerChoice} beats ${playerChoice}!`; 
+  //Declares win/lose messages to display at the end of the round
+  const winMessage = `You Win! ${playerChoice} Beats ${computerChoice}!`
+  const loseMessage = `You Lose! ${computerChoice} Beats ${playerChoice}!`; 
 
+  //Displays the choices on the web page
+  playerPara.textContent = `Player chose ${playerChoice}`;
+  computerPara.textContent = `Computer chose ${computerChoice}`;
 
   if (playerChoice === computerChoice) {
+    outcomePara.textContent = 'Draw!';
     console.log("Draw!");
     return;
   }
-
-  /* console.log(`Player: ${playerChoice} ${typeof playerChoice}`);
-  console.log(`Computer: ${computerChoice} ${typeof computerChoice}`); */
   
-  if (playerChoice === "rock") {
-    if (computerChoice === "scissors") {
+  if (playerChoice === "Rock") {
+    if (computerChoice === "Scissors") {
+      outcomePara.textContent = winMessage;
       console.log(winMessage);
       return;
     } else {
+      outcomePara.textContent = loseMessage;
       console.log(loseMessage);
       return;
     }
-  } else if (playerChoice === "scissors") {
-    if (computerChoice === "paper") {
+  } else if (playerChoice === "Scissors") {
+    if (computerChoice === "Paper") {
+      outcomePara.textContent = winMessage;
       console.log(winMessage);
       return;
     } else {
+      outcomePara.textContent = loseMessage;
       console.log(loseMessage);
       return;
     }
-  } else if (playerChoice === "paper") {
-    if (computerChoice === "rock") {
+  } else if (playerChoice === "Paper") {
+    if (computerChoice === "Rock") {
+      outcomePara.textContent = winMessage;
       console.log(winMessage);
       return;
     } else {
+      outcomePara.textContent = loseMessage;
       console.log(loseMessage);
       return;
     }
   }
 }
+
+//Creates round-by-round results section using DOM manipulation
+const resultsDiv = document.querySelector('.results');
+const playerPara = document.createElement('p');
+const computerPara = document.createElement('p');
+const outcomePara = document.createElement('p');
+playerPara.setAttribute('class', 'player-choice');
+computerPara.setAttribute('class', 'computer-choice');
+outcomePara.setAttribute('class', 'outcome');
+resultsDiv.appendChild(playerPara);
+resultsDiv.appendChild(computerPara);
+resultsDiv.appendChild(outcomePara);
+
+
 
 const buttons = document.querySelectorAll('.btn');
 console.log(buttons);
