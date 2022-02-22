@@ -11,60 +11,70 @@ function computerPlay(){
   } else {
     randChoice = 'scissors';
   }
- 
 
   return randChoice;
 }
 
-function playRound(playerChoice, computerChoice) {
-  //Checks if player did not input anything
-  if (!playerChoice) {
-    return "No choice given!";
+function playRound(e) {
+  /* console.log(e);
+  console.log(e.target);
+  console.log(e.target.getAttribute('class')); */
+
+  const selectedButton = e.target;
+  const playerChoice = selectedButton.getAttribute('class').slice(4);
+  const computerChoice = computerPlay();
+
+  const winMessage = `You Win! ${playerChoice} beats ${computerChoice}!`
+  const loseMessage = `You Lose! ${computerChoice} beats ${playerChoice}!`; 
+
+
+  if (playerChoice === computerChoice) {
+    console.log("Draw!");
+    return;
   }
 
-  //converts 'rock' into 'Rock', 'paper' into 'Paper', etc.
-  let player = playerChoice.charAt(0).toUpperCase()+playerChoice.slice(1).toLowerCase();
-  let computer = computerChoice.charAt(0).toUpperCase()+computerChoice.slice(1).toLowerCase();
+  /* console.log(`Player: ${playerChoice} ${typeof playerChoice}`);
+  console.log(`Computer: ${computerChoice} ${typeof computerChoice}`); */
   
-  //Checks if the player did not input a valid choice
-  if (player !== 'Scissors' && player !== 'Rock' && player !== 'Paper'){
-    return "Invalid Choice!";
-  }
-
-  let winMessage = `You Win! ${player} beats ${computer}!`;
-  let loseMessage = `You Lose! ${computer} beats ${player}!`;
-
-  if (player === computer) {
-    return "Draw!";
-  }
-
-  console.log(`Player: ${player} ${typeof player}`);
-  console.log(`Computer: ${computer} ${typeof computer}`);
-  
-  if (player === "Rock") {
-    if (computer === "Scissors") {
-      return winMessage;
+  if (playerChoice === "rock") {
+    if (computerChoice === "scissors") {
+      console.log(winMessage);
+      return;
     } else {
-      return loseMessage;
+      console.log(loseMessage);
+      return;
     }
-  } else if (player === "Scissors") {
-    if (computer === "Paper") {
-      return winMessage;
+  } else if (playerChoice === "scissors") {
+    if (computerChoice === "paper") {
+      console.log(winMessage);
+      return;
     } else {
-      return loseMessage;
+      console.log(loseMessage);
+      return;
     }
-  } else if (player === "Paper") {
-    if (computer === "Rock") {
-      return winMessage;
+  } else if (playerChoice === "paper") {
+    if (computerChoice === "rock") {
+      console.log(winMessage);
+      return;
     } else {
-      return loseMessage;
+      console.log(loseMessage);
+      return;
     }
   }
 }
 
-function game(){
+const buttons = document.querySelectorAll('.btn');
+console.log(buttons);
+buttons.forEach((btn) => {
+  btn.addEventListener('click', playRound)
+});
+
+
+
+
+/* function game(){
   
   console.log("Game Over!");
 }
 
-game();
+game(); */
