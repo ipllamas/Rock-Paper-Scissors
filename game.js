@@ -25,9 +25,9 @@ function playRound(playerChoice, computerChoice) {
   //converts 'rock' into 'Rock', 'paper' into 'Paper', etc.
   let player = playerChoice.charAt(0).toUpperCase()+playerChoice.slice(1).toLowerCase();
   let computer = computerChoice.charAt(0).toUpperCase()+computerChoice.slice(1).toLowerCase();
-
+  
   //Checks if the player did not input a valid choice
-  if (player !== 'Scissors' || player !== 'Rock' || player !== 'Paper'){
+  if (player !== 'Scissors' && player !== 'Rock' && player !== 'Paper'){
     return "Invalid Choice!";
   }
 
